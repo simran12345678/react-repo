@@ -5,5 +5,26 @@
 }
 .btn-add{
     float: right;
-  
+    background-color: #949999;
+    border:none;
+    height:37px;
+    padding:5px 5px;
+    border-radius: 10px;
+    color:white;
+  border: 1px solid #c0392b;
+ }
+ .btn-add:hover{
+    background-color: #c0392b;
+    color:black;
+ }
+.search-bar{
+    float:right;
+    margin-left: 30px;
+    margin-right: 20px;
+    height: 37px;
+    border-radius: 10px;
+    border:1px solid #949999;
+}
+.search-bar:hover{
+    border: 1px solid #c0392b;
 }

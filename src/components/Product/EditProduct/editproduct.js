@@ -16,7 +16,7 @@ class EditProduct extends React.Component {
 
     this.state = {
       name: "",
-      price: 0,
+      Price: 0,
       id: 0,
       img: "",
     };
@@ -36,7 +36,7 @@ class EditProduct extends React.Component {
             this.setState({
               name: response.data.value,
 
-              price: response.data.price,
+              Price: response.data.Price,
 
               id: response.data.id,
 
@@ -51,7 +51,7 @@ class EditProduct extends React.Component {
   }
 
   getPrice = (event) => {
-    this.setState({ price: event.target.value });
+    this.setState({ Price: event.target.value });
   };
 
   getName = (event) => {
@@ -64,7 +64,7 @@ class EditProduct extends React.Component {
     let productRequestBody = {
       value: this.state.name,
 
-      price: this.state.price,
+      Price: this.state.Price,
 
       // img: this.state.img,
     };
@@ -91,7 +91,7 @@ class EditProduct extends React.Component {
     if (this.props.location.state === undefined) {
       return (
         <div>
-          <h1>Pl. go to from home page!!!! </h1>
+          <h1>Error in loading </h1>
         </div>
       );
     }
@@ -131,7 +131,7 @@ class EditProduct extends React.Component {
               <Form.Group
               >
             <Form.Label>Price </Form.Label>
-            <Form.Control type="number" value={this.state.price} onChange={this.getPrice}/>
+            <Form.Control type="number" value={this.state.Price} onChange={this.getPrice}/>
             </Form.Group>
             </Col>
             </Row>

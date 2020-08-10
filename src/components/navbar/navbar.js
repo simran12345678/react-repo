@@ -17,7 +17,7 @@ export default class NavbarComponent extends React.Component {
               <Nav.Link href="./Home"style={{color:'white',fontSize:'25px'}}>Home</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="./DAshboard"style={{color:'white',fontSize:'25px'}}>Dashboard</Nav.Link>
+              <Nav.Link href="./Dashboard"style={{color:'white',fontSize:'25px'}}>Dashboard</Nav.Link>
               <Nav.Link href="./MyProfile"style={{color:'white',fontSize:'25px'}}>MyProfile</Nav.Link>
               <Nav.Link style={{color:'white',fontSize:'25px'}}>Contact US</Nav.Link>
               <Nav.Link>

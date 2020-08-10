@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/Login" component={Login} />
         <Route exact path="/Home" component={Home}/>
-        <Route exact path="/Dashboard" component={Dashboard}/>
+        <Route exact path="/dashboard" component={Dashboard}/>
         <Route exact path="/MyProfile" component={MyProfile}/>
         <Route exact path="/AddProduct" component={AddProduct} />
         <Route

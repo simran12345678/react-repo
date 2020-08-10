@@ -8,46 +8,33 @@ export default class AddProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productname: "",
-      productprice: 0,
-      productcategory: "",
-      productimg: "",
-      productquantity: 0,
+      value: "",
+      Price: 0,
+      img: "",
     };
   }
 
   getName = (event) => {
-    this.setState({ productname: event.target.value });
+    this.setState({ value: event.target.value });
   };
 
   getPrice = (event) => {
-    this.setState({ productprice: event.target.value });
-  };
-
-  getQuantity = (event) => {
-    this.setState({ productquantity: event.target.value });
-  };
-
-  getCategory = (event) => {
-    console.log(event.target.value);
-    this.setState({ productcategory: event.target.value });
+    this.setState({ price: event.target.value });
   };
 
   getImage = (event) => {
     console.log(event.target.value);
-    this.setState({ productimg: event.target.value });
-    console.log(this.state.productimg);
+    this.setState({ img: event.target.value });
+    console.log(this.state.img);
   };
 
   addproduct = (event) => {
     console.log("Add product via axios and post");
     let productRequestBody = {
-      value: this.state.productname,
-      Price: this.state.productprice,
-      //   category_name: this.state.productcategory,
-      img: this.state.productimg,
-      //   product_quantity: this.state.productquantity,
-    };
+      value: this.state.value,
+      price: this.state.price,
+      img: this.state.img,
+         };
     axios.post("  http://localhost:3000/productlist", productRequestBody).then(
       (response) => {
         console.log(response);
@@ -86,7 +73,7 @@ export default class AddProduct extends React.Component {
                   <Form.Label>Price</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Price"
+                    placeholder="price"
                     onChange={this.getPrice}
                     required
                   />
