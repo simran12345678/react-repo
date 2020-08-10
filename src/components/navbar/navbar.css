@@ -1,0 +1,28 @@
+
+.brand_logo{
+    height:70px;
+    width:70px;
+}
+.navbar{
+    background-color: #949999;
+    color:white;
+}
+.navlink{
+color: white;
+font-size: 30px;
+}
+.btn-logout{
+  display:flex;
+  border-radius:5px;
+  font-size: 25px;
+  color:white;
+  border: 1px solid #c0392b;
+  background-color:#949999 ;
+}
+.btn-logout:hover{
+  background-color: #c0392b;
+  color:black;
+}
+.navbar{
+  color:white;
+}

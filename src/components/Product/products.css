@@ -1,0 +1,38 @@
+.grid{
+ 
+  height: auto;
+  width: auto;
+  float:left;
+  margin-left: 80px;
+  margin-top:50px;
+
+}
+/* .cards{
+  background-color: wheat;
+  border-radius: 50px;
+  overflow: hidden;
+  height:800px;
+  max-height: 35vh;
+} */
+.btn-edit{
+  border-radius:5px;
+  font-size: 20px;
+  color:white;
+  border: 1px solid #c0392b;
+  background-color:#949999 ;
+}
+.btn-edit:hover{
+  background-color: #c0392b;
+  color:black;
+}
+.btn-delete:hover{
+  background-color: #c0392b;
+  color:black;
+}
+.btn-delete{
+   border-radius:5px;
+  font-size: 20px;
+  color:white;
+  border: 1px solid #c0392b;
+  background-color:#949999 ;
+}

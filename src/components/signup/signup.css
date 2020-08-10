@@ -1,0 +1,54 @@
+.container-main {
+  display: flex;
+  justify-content: s;
+  align-items: center;
+  height: auto;
+  width: auto;
+  margin-top: 100px;
+  margin-bottom: auto;
+  background: #949999;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+}
+
+.brand_logo_container {
+  position: absolute;
+  height: 170px;
+  width: 170px;
+  top: -75px;
+  left: 35%;
+  padding: 10px;
+  border-radius: 50%;
+  text-align: center;
+  border-radius: 50%;
+}
+.brand_logo {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+i {
+  color: black !important;
+}
+.signup-form {
+  width: 60%;
+  margin-top: 200px;
+  padding-top: 50px;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hidden {
+  display: none !important;
+}
