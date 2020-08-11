@@ -16,9 +16,10 @@ class EditProduct extends React.Component {
 
     this.state = {
       name: "",
-      Price: 0,
+      price: 0,
       id: 0,
       img: "",
+      quantity:""
     };
   }
 
@@ -36,8 +37,8 @@ class EditProduct extends React.Component {
             this.setState({
               name: response.data.value,
 
-              Price: response.data.Price,
-
+              price: response.data.price,
+              quantity:response.data.quantity,
               id: response.data.id,
 
               // img: response.data.img,
@@ -51,21 +52,23 @@ class EditProduct extends React.Component {
   }
 
   getPrice = (event) => {
-    this.setState({ Price: event.target.value });
+    this.setState({price: event.target.value });
   };
 
   getName = (event) => {
     this.setState({ name: event.target.value });
   };
 
+  getQuantity=(event)=>{
+    this.setState({quantity:event.target.value});
+  }
   editProduct = () => {
     console.log("Edit Product via axios and put");
 
     let productRequestBody = {
       value: this.state.name,
-
-      Price: this.state.Price,
-
+      price: this.state.price,
+      quantity:this.state.quantity
       // img: this.state.img,
     };
 
@@ -100,13 +103,12 @@ class EditProduct extends React.Component {
 
       <React.Fragment>
         <Navbar></Navbar>
-        <div>
-      
-      <div className="container">
-                  <div>
-          <h3>Edit Product</h3>
 
-          <Form>
+      <div className="container-main">
+      <div>
+            <h1 className="heading">Edit Product</h1>
+          </div>
+          <form>
             <Row>
               <Col>
               <Form.Group
@@ -131,18 +133,37 @@ class EditProduct extends React.Component {
               <Form.Group
               >
             <Form.Label>Price </Form.Label>
+            <Form.Control type="number" value={this.state.price} onChange={this.getPrice}/>
+            </Form.Group>
+            </Col>
+            </Row>
+            <Row>
+              <Col>
+              <Form.Group
+              >
+            <Form.Label>Quantity </Form.Label>
+            <Form.Control type="number" value={this.state.quantity} onChange={this.getQuantity}/>
+            </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group
+              >
+            <Form.Label>Image </Form.Label>
             <Form.Control type="number" value={this.state.Price} onChange={this.getPrice}/>
             </Form.Group>
             </Col>
             </Row>
+            <Row>
+              <Col>
             <Button type="button" onClick={this.editProduct} variant="outline-dark"  size="lg"
                   block>
               Edit Product
             </Button>
-          </Form>
-        </div>
+            </Col>
+            </Row>
+          </form>
+      
       </div>
-    </div>
       </React.Fragment>
     
     );

@@ -3,6 +3,8 @@ import { Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import "./signup.css";
 import { Link, Redirect } from "react-router-dom";
 import logo from "../../asset/logo.png";
+import axios from "axios";
+const SIGNUP_ERROR = "Please try again later.";
 
 function passwordValidate(pass) {
   const strongRegex = new RegExp(
@@ -55,9 +57,11 @@ export default class SignupComponent extends React.Component {
       hiddenPassword: true,
       firstName: "",
       lastName: "",
+      signupSuccess: false,
+      signupError: false,
       // dob: "",
       mobile: "",
-      LoggedIn:false,
+      LoggedIn: false,
     };
   }
 
@@ -91,35 +95,64 @@ export default class SignupComponent extends React.Component {
       console.log(errors);
       return;
     } else {
-      console.log("good to go");
-      // return (
-      //   <Redirect
-      //     to={{
-      //       pathname: "/Login",
-      //     }}
-      //   />
-      // );
-      this.setState({
-        LoggedIn:true});
+      var signupData = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        mobile: this.state.mobile,
+        email: this.state.email,
+        password: this.state.password,
+      };
+      axios
+        .post("http://localhost:3000/users", signupData)
+        .then((response) => {
+          console.log(response);
+          if (response.status === 201) {
+            this.setState({
+              signupSuccess: true,
+              signupError: false,
+              signupMessage: response.message,
+            });
+          }
+        })
+        .catch((err) => {
+          var errorResponse = "";
+          if (err.response) errorResponse = err.response.data.message;
+          else errorResponse = SIGNUP_ERROR;
+
+          this.setState({
+            signupError: true,
+            signupSuccess: false,
+            errorMessage: errorResponse,
+          });
+        });
     }
   };
 
   render() {
-    if (this.state.LoggedIn)
-    return <Redirect to={{
-        pathname: "/Login"
-    }} />
+    if (this.state.signupSuccess)
+      return (
+        <Redirect
+          to={{
+            pathname: "/Login",
+          }}
+        />
+      );
     return (
       <React.Fragment>
         <div className="container_main">
           <div className="brand_logo_container">
-            <img src={logo} alt="logo" className="brand_logo" style={{height:'170px', width:'170px'}} />
+            <img
+              src={logo}
+              alt="logo"
+              className="brand_logo"
+              style={{ height: "170px", width: "170px" }}
+            />
           </div>
           <form
             className="signup-form"
             onSubmit={this.submitSignUpRequest}
             noValidate
-            style={{paddingTop:'120px'}}
+            style={{ paddingTop: "120px" }}
           >
             <Row>
               <Col>

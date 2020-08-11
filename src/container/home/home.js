@@ -3,14 +3,14 @@ import Navbar from "../../components/navbar/navbar";
 import Product from "../../components/Product/products";
 import axios from "axios";
 import "./home.css";
-import { Form, FormControl, Button } from "react-bootstrap";
+import { Form,  } from "react-bootstrap";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       productList: [],
-      searchFriends: [],
+      categoryProducts:[],
       searchValue: "",
       myid: 0,
     };
@@ -37,6 +37,7 @@ class Home extends Component {
       state: { myid: id },
     });
   };
+
   getAllProducts = () => {
     axios.get(" http://localhost:3000/productlist").then(
       (response) => {
@@ -44,6 +45,7 @@ class Home extends Component {
         console.log(response.data);
         this.setState({ productList: response.data });
         this.setState({ searchProducts: response.data });
+        this.setState({categoryProducts:response.data})
         console.log(this.state.productList);
       },
       (error) => {
@@ -79,6 +81,7 @@ class Home extends Component {
           name={product.value}
           price={product.price}
           image={product.img}
+          category={product.category}
           deleteId={this.deleteProductWithId}
           editId={this.editProductWithId}
           stockId={this.getStocks}
@@ -95,20 +98,29 @@ console.log('Product Stock with id: ' + id);
                           }
               })
 }
+
+categoryFilter=(event)=>{
+  let categoryV=event.target.value
+  if(categoryV!==' ')
+  {
+  this.setState({categoryValue:categoryV})
+  let categoryP=this.state.categoryProducts.filter(f=>{
+      return f.category.match(categoryV)
+  })
+
+  this.setState({productList:categoryP})
+  
+}else{
+      this.getAllProducts()
+  }
+}
   render() {
     return (
       <div>
         <Navbar />
         <Form>
           <span>
-            {/* <FormControl
-              type="text"
-              placeholder="Search"
-              onChange={this.getSearch}
-              className="mr-sm-1"
-            />
-
-            <Button variant="outline-primary">Search</Button> */}
+           
             <br></br>
            
             <input
@@ -116,10 +128,15 @@ console.log('Product Stock with id: ' + id);
               value={this.state.searchValue}
               onChange={this.getSearch} className="search-bar" placeholder="Search here..."
             ></input>
-            {/* SearchValue: {this.state.searchValue} */}
+          <label style={{paddingLeft:"15px"}}>Category Filter:  </label>
+                    <select id="category" name="category :" onChange={this.categoryFilter}>
+                            <option value="" selected="true">Select</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="furniture">Furniture</option>
+                    </select>
             <button
-              // style={{ float: "right", height: "40px" }}
-              onClick={this.openAddProduct}
+                          onClick={this.openAddProduct}
               variant="outline-primary"
               className="btn-add"
             >

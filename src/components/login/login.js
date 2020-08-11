@@ -9,7 +9,10 @@ import {
   } from "react-bootstrap";
 import { Link,Redirect} from "react-router-dom";
 import logo from "../../asset/logo.png";
+import axios from "axios";
 
+// const LOGIN_SUCCESS = "login successful.";
+// const LOGIN_ERROR = "Please try again later.";
 function passwordValidate(pass) {
   const strongRegex = new RegExp(
     "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#/$%/^&/*])(?=.{8,})"
@@ -49,7 +52,6 @@ export default class LoginComponent extends React.Component {
       hiddenPassword: true,
       loginSuccess: false,
       loginError: false,
-      LoggedIn:false
     };
   }
   handleEmailChange = (event) => {
@@ -68,17 +70,42 @@ submitLoginRequest = (event) => {
   if (errors.length > 0) {
     console.log(errors);
     return;
-  } else {
-    console.log("good to go");
-      this.setState({
-      LoggedIn:true});
+  }
+   else {
+    axios
+        .get("http://localhost:3000/users", {
+          params: {
+            email: this.state.email,
+            password: this.state.password,
+          },
+        })
+        .then((response) => {
+          console.log(this.state);
+          if (response.data.length !== 0) {
+            this.setState({
+              loginSuccess: true,
+              loginError: false,
+              loginMessage: response.message,
+            });
+          }
+        })
+        .catch((err) => {
+          var errorResponse = "";
+          if (err.response) errorResponse = err.response.data.message;
+
+          this.setState({
+            loginError: true,
+            loginSuccess: false,
+            errorMessage: errorResponse,
+          });
+        });
   }
 };
 
   render() {
   
 
-    if (this.state.LoggedIn)
+    if (this.state.loginSuccess)
     return <Redirect to={{
         pathname: "/Home"
     }} />
@@ -124,7 +151,7 @@ submitLoginRequest = (event) => {
                       required
                     />
                       </InputGroup>
-                      <div className="invalid-feedback">Password must be 6 characters long  It should contain a number and <br></br> contain , uppercase and lowercase letter</div>
+                      <div className="invalid-feedback">Password must be 8 characters long  It should contain a number and <br></br> contain , uppercase and lowercase letter</div>
                 </Form.Group>
               </Col>
             </Row>

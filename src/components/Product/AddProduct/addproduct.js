@@ -9,8 +9,10 @@ export default class AddProduct extends React.Component {
     super(props);
     this.state = {
       value: "",
-      Price: 0,
+      price: 0,
       img: "",
+      category:"",
+      quantity:0,
     };
   }
 
@@ -27,6 +29,14 @@ export default class AddProduct extends React.Component {
     this.setState({ img: event.target.value });
     console.log(this.state.img);
   };
+  getCategory=(event)=>{
+    console.log(event.target.value);
+    this.setState({category:event.target.value});
+    console.log(this.state.category);
+  };
+  getQuantity=(event)=>{
+    this.setState({quantity:event.target.value});
+  }
 
   addproduct = (event) => {
     console.log("Add product via axios and post");
@@ -34,6 +44,8 @@ export default class AddProduct extends React.Component {
       value: this.state.value,
       price: this.state.price,
       img: this.state.img,
+      category:this.state.category,
+      quantity:this.state.quantity,
          };
     axios.post("  http://localhost:3000/productlist", productRequestBody).then(
       (response) => {
@@ -50,7 +62,7 @@ export default class AddProduct extends React.Component {
     return (
       <React.Fragment>
         <Navbar></Navbar>
-        <div className="container_main">
+        <div className="container-main">
           <div>
             <h1 className="heading">Add Product</h1>
           </div>
@@ -72,7 +84,7 @@ export default class AddProduct extends React.Component {
                 <Form.Group>
                   <Form.Label>Price</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     placeholder="price"
                     onChange={this.getPrice}
                     required
@@ -88,7 +100,30 @@ export default class AddProduct extends React.Component {
                 </Form.Group>
               </Col>
             </Row>
-
+            <Row>
+              <Col>
+              <Form.Group>
+                  <Form.Label>Category</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="category"
+                    onChange={this.getCategory}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+              <Form.Group>
+                  <Form.Label>Quantity</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Quantity"
+                    onChange={this.getQuantity}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
             <Row>
               <Col>
                 <Button

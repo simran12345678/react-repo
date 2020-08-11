@@ -2,7 +2,7 @@ import React from "react";
 import Signup from "./components/signup/signup";
 import Login from "./components/login/login";
 import Home from "./container/home/home";
-import Dashboard from "./container/dashboard/dashboard";
+// import Dashboard from "./components/dashboard/dashboard";
 import MyProfile from "./container/profile/myprofile";
 import AddProduct from "./components/Product/AddProduct/addproduct";
 import EditProduct from "./components/Product/EditProduct/editproduct";
@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/Login" component={Login} />
         <Route exact path="/Home" component={Home}/>
-        <Route exact path="/dashboard" component={Dashboard}/>
+        {/* <Route exact path="/Dashboard" component={Dashboard}/> */}
         <Route exact path="/MyProfile" component={MyProfile}/>
         <Route exact path="/AddProduct" component={AddProduct} />
         <Route

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card }from "react-bootstrap";
+import { Card,  }from "react-bootstrap";
 import axios from "axios";
 import { Redirect } from "react-router";
 import "./products.css";
@@ -35,10 +35,10 @@ class Product extends Component {
     this.props.editId(this.props.id);
   };
 
-  getStock=()=>{
-    console.log(this.props.id);
-    this.props.stockId(this.props.id);
-}
+//   getStock=()=>{
+//     console.log(this.props.id);
+//     this.props.stockId(this.props.id);
+// }
   render() {
     if (this.state.deleteSuccess) {
       return <Redirect to="/Home" />;
@@ -56,23 +56,28 @@ class Product extends Component {
       );
     }
     return (
+      <React.Fragment>
       <div className="grid">
         
-          <Card style={{ width: 200 ,border:'1px solid #949999'}} className="cards">
-            <Card.Img variant="top" src={this.props.image} onClick={this.getStock} />
-            <Card.Body>
-              <Card.Title >Product:{this.props.name}</Card.Title>
-              <Card.Text>Price:
-                {this.props.price}
-                <br/><br/>
-                <button onClick={this.editProductWithId} className="btn-edit">Edit</button>
-                &nbsp;
-                <button onClick={this.deleteCurrentProduct} className="btn-delete">Delete</button>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-      
-      </div>
+      <Card style={{ width: 200 ,border:'1px solid #949999',height:450}} className="cards">
+        <Card.Img variant="top" src={this.props.image}  />
+        <Card.Body>
+          <Card.Title >{this.props.name}</Card.Title>
+          <Card.Text>Price:
+            {this.props.price}
+            <br/><br/>
+            </Card.Text>
+           
+           
+        </Card.Body>
+        <button onClick={this.editProductWithId} className="btn-edit">Edit</button>
+            &nbsp;
+            <button onClick={this.deleteCurrentProduct} className="btn-delete">Delete</button>
+      </Card>
+     
+         
+  </div>
+  </React.Fragment>
     );
   }
 }
